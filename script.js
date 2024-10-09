@@ -89,25 +89,25 @@ function drawOnImage(image = null) {
             const posX = e.pageX - canvas.offsetLeft;
             const posY = e.pageY - canvas.offsetTop;
 
-            const blurSpace = context.getImageData(posX - 10, posY - 10, 21, 21);
-            const imageData = context.getImageData(0, 0, canvas.width, canvas.height)
-            const data = imageData.data
-            const blurData = blurSpace.data
-            console.log(blurData.length, posX, posY)
-            const arr = new Array(21)
-            for (let subarr in arr) {
-                subarr = new Array(21)
-            }
-            console.log(arr)
-            for (let row= 0; row < 21; row++) {
-                for (let col= 1; col < 22; col++)
-                {
-                    arr[row][col] = 'f'
-                }
-                console.log(arr)
-            }
-
-            context.putImageData(blurSpace, posX - 10, posY - 10);
+            // const blurSpace = context.getImageData(posX - 10, posY - 10, 21, 21);
+            // const imageData = context.getImageData(0, 0, canvas.width, canvas.height)
+            // const data = imageData.data
+            // const blurData = blurSpace.data
+            // console.log(blurData.length, posX, posY)
+            // const arr = new Array(21)
+            // for (let subarr in arr) {
+            //     subarr = new Array(21)
+            // }
+            // console.log(arr)
+            // for (let row= 0; row < 21; row++) {
+            //     for (let col= 1; col < 22; col++)
+            //     {
+            //         arr[row][col] = 'f'
+            //     }
+            //     console.log(arr)
+            // }
+            //
+            // context.putImageData(blurSpace, posX - 10, posY - 10);
             isDrawing = true;
             context.beginPath();
             context.lineWidth = size / 5;
