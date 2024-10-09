@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Image draw</title>
+</head>
+<body>
+    <div class="app">
+        <div class="tools">
+        </div>
+        <div class="ground">
+            <canvas id="canvas"></canvas>
+        </div>
+        <div class="edit-panel">
+            <h2>Tool</h2>
+            <div class="tools">
+                <button id="brush-tool">Brush</button>
+                <button id="blur-tool">Blur</button>
+            </div>
+            <div class="colors color-scheme">
+                <h2>Color</h2>
+                <button class="col-btn red"></button>
+                <button class="col-btn yellow"></button>
+                <button class="col-btn lime"></button>
+                <button class="col-btn deepskyblue"></button>
+                <button class="col-btn purple"></button>
+                <button class="col-btn black"></button>
+                <button class="col-btn white"></button>
+            </div>
+            <h2>Size</h2>
+            <label class="brush-size"><input id="tool-size" value="20" min="10" max="200" type="range"></label>
+            <div class="controls">
+                <label>Upload Image
+                    <input id="file-input" type="file">
+                </label>
+                <a download="" id="save">Save</a>
+                <button>Undo</button>
+                <button>Redo</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

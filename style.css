@@ -1,0 +1,169 @@
+* {
+    margin: 0;
+    padding: 0;
+    user-select: none;
+}
+
+.app {
+    width: 80vw;
+    height: 80vh;
+    background-color: #3c213d;
+    padding: 10vh 10vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.ground {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rebeccapurple;
+    aspect-ratio: 16/9;
+}
+
+.edit-panel {
+    background-color: #22222e;
+    padding: 1vw 25%;
+}
+
+.edit-panel * {
+    color: white;
+    outline: none;
+    border: none;
+}
+
+.edit-panel h2 {
+    font-family: "Calibri", serif;
+    margin-top: 3vw;
+    margin-bottom: 1vw;
+}
+
+.edit-panel .tools button,
+.edit-panel .controls button,
+.edit-panel .controls label,
+.edit-panel .controls a {
+    background-color: #34344a;
+    padding: 1vw 1.3vw;
+    border-radius: 15px;
+    font-size: 1.3vw;
+    margin-right: 1vw;
+    transition: transform 0.5s;
+    font-family: "Calibri", serif;
+    font-weight: bold;
+}
+
+.edit-panel .tools button:hover,
+.edit-panel .controls button:hover,
+.edit-panel .controls label:hover {
+    cursor: pointer;
+    color: deepskyblue;
+}
+
+.edit-panel .controls a:hover {
+    color: deepskyblue;
+    background-color: white;
+}
+
+.edit-panel .tools button:active {
+    background-color: #34344a;
+}
+
+.colors {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 2vw;
+    transition: all 0.5s;
+}
+
+.colors h2 {
+    width: 100%;
+}
+
+.colors button {
+    width: 2.5vw;
+    aspect-ratio: 1/1;
+    background-color: red;
+    border-radius: 35%;
+}
+
+.colors .yellow {
+    background-color: yellow;
+}
+
+.colors .lime {
+    background-color: lime;
+}
+
+.colors .deepskyblue {
+    background-color: deepskyblue;
+}
+
+.colors .purple {
+    background-color: purple;
+}
+
+.colors .black {
+    background-color: black;
+}
+
+.colors .white {
+    background-color: white;
+}
+
+.colors button:hover {
+    cursor: pointer;
+}
+
+.brush-size {
+    display: flex;
+}
+
+.brush-size input {
+    width: 80%;
+}
+
+.controls {
+    margin-top: 3vw;
+    margin-bottom: 3vw;
+}
+
+.edit-panel .controls a {
+    background-color: dodgerblue;
+    text-decoration: none;
+}
+
+.controls label {
+    position: relative;
+    display: inline-block;
+}
+
+.controls input[type="file"] {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+    display: block;
+    width: 0;
+    height: 0;
+}
+
+#img {
+    background: url("https://i.pinimg.com/originals/db/b3/bc/dbb3bc5c461f6cfdde74e829fac29e43.jpg") center no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    filter: blur(10px);
+}
+
+#blurrer {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+
+}
+
+
+.hide {
+    opacity: 0;
+    margin-bottom: -10vw;
+}

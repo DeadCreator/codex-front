@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <img id="img" src="https://i.pinimg.com/originals/db/b3/bc/dbb3bc5c461f6cfdde74e829fac29e43.jpg" alt="">
+  <canvas style="border: solid 5px black" width="1000" height="500" id="canvas"></canvas>
+  <canvas style="border: solid 5px black" width="1000" height="500" id="canvas1"></canvas>
+  <script>
+    const canvas = document.getElementById('canvas')
+    const canvas1 = document.getElementById('canvas')
+    const ctx = canvas.getContext('2d')
+    const ctx1 = canvas.getContext('2d')
+    canvas.addEventListener("mousemove", (e) => {
+
+      const posX = e.pageX - canvas.offsetLeft
+      const posY = e.pageY - canvas.offsetTop
+      ctx.arc(posX, posY, 40, 0, 2 * Math.PI, false)
+      ctx.filter = "blur(15px)"
+      ctx.clip()
+      const img = document.getElementById('img')
+
+      ctx.drawImage(img, posX - 100, posY - 100)
+      ctx.restore()
+    })
+  </script>
+</body>
+</html>
