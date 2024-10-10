@@ -73,7 +73,6 @@ function fileToDataUri(field) {
 
 fileInput.addEventListener('change', async (e) => {
     const [file] = fileInput.files;
-
     // displaying the uploaded image
     const image = document.createElement("img");
     image.src = await fileToDataUri(file);

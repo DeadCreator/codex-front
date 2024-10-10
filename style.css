@@ -4,12 +4,21 @@
     user-select: none;
 }
 
-.app {
+body {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #3c213d;
-    padding: 7vh 5vw;
+}
+
+.app {
+    margin: 10vw;
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 45%;
 }
 
 .ground {
@@ -18,14 +27,13 @@
     align-items: center;
     background-color: rebeccapurple;
     aspect-ratio: 16/9;
-    width: 40vw;
+    width: 100%;
 }
 
 .edit-panel {
     background-color: #22222e;
-    width: 30vw;
-    aspect-ratio: 16/9;
-    padding: 0 5vw;
+    width: 50%;
+    padding: 0 25%;
 }
 
 .edit-panel * {
@@ -41,9 +49,9 @@
 
 .edit-panel h2 {
     font-family: "Calibri", serif;
-    margin-top: 2vw;
+    margin-top: 1.5vw;
     margin-bottom: 1vw;
-    font-size: 1.3vw;
+    font-size: 1.1vw;
 }
 
 .edit-panel .tools button,
@@ -51,13 +59,14 @@
 .edit-panel .controls label,
 .edit-panel .controls a {
     background-color: #34344a;
-    padding: 1vw 1.3vw;
+    padding: 0.5vw 0.7vw;
     border-radius: 15px;
-    font-size: 1.1vw;
-    margin-right: 1vw;
+    font-size: 1vw;
+    margin-right: 0.7vw;
     transition: transform 0.5s;
     font-family: "Calibri", serif;
-    font-weight: bold;
+    font-weight: 500;
+    border: solid 2px transparent;
 }
 
 .edit-panel .tools button:hover,
@@ -65,6 +74,7 @@
 .edit-panel .controls label:hover {
     cursor: pointer;
     color: deepskyblue;
+    border-color: deepskyblue;
 }
 
 .edit-panel .controls a:hover {
@@ -78,8 +88,9 @@
 
 .colors {
     display: flex;
+    justify-content: space-between;
     flex-wrap: wrap;
-    column-gap:1vw;
+    column-gap: 0.7vw;
     transition: all 0.5s;
     z-index: 0;
     position: relative;
@@ -90,10 +101,11 @@
 }
 
 .colors button {
-    width: 2vw;
+    width: 1.98vw;
     aspect-ratio: 1/1;
     background-color: red;
     border-radius: 35%;
+    transition: transform 0.5s;
 }
 
 .colors .yellow {
@@ -122,6 +134,7 @@
 
 .colors button:hover {
     cursor: pointer;
+    transform: scale(1.05);
 }
 
 .brush-size {
@@ -131,7 +144,7 @@
 }
 
 .brush-size input {
-    width: 80%;
+    width: 100%;
 }
 
 .controls {
@@ -144,10 +157,6 @@
     text-decoration: none;
 }
 
-.controls label {
-    position: relative;
-    display: inline-block;
-}
 
 .controls input[type="file"] {
     position: absolute;
@@ -162,5 +171,5 @@
 
 .hide {
     opacity: 0;
-    margin-bottom: -6vw;
+    margin-bottom: -5vw;
 }
