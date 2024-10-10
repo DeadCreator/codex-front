@@ -8,11 +8,30 @@ const fileInput = document.getElementById('file-input');
 const ground = document.querySelector('.ground');
 const canvas = document.getElementById('canvas');
 
+const undoBtn = document.getElementById('undo');
+const redoBtn = document.getElementById('redo');
 
 let color = "black"
 let size = 50
 let isBrushing = true
+
+let iteration = 0
 drawOnImage()
+
+undoBtn.addEventListener('click', () => {
+    iteration--
+    const ctx = canvas.getContext('2d');
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    ctx.putImageData(localStorage.getItem(`edit-${iteration}`), 0, 0, canvas.width, canvas.height);
+    localStorage.setItem(`edit-${iteration}`, imageData);
+})
+
+redoBtn.addEventListener('click', () => {
+    const ctx = canvas.getContext('2d');
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    ctx.putImageData(localStorage.getItem("edit-prev"), 0, 0, canvas.width, canvas.height);
+
+})
 
 blurTool.addEventListener('click', () => {
     colorScheme.classList.add('hide');
@@ -89,34 +108,18 @@ function drawOnImage(image = null) {
             const posX = e.pageX - canvas.offsetLeft;
             const posY = e.pageY - canvas.offsetTop;
 
-            // const blurSpace = context.getImageData(posX - 10, posY - 10, 21, 21);
-            // const imageData = context.getImageData(0, 0, canvas.width, canvas.height)
-            // const data = imageData.data
-            // const blurData = blurSpace.data
-            // console.log(blurData.length, posX, posY)
-            // const arr = new Array(21)
-            // for (let subarr in arr) {
-            //     subarr = new Array(21)
-            // }
-            // console.log(arr)
-            // for (let row= 0; row < 21; row++) {
-            //     for (let col= 1; col < 22; col++)
-            //     {
-            //         arr[row][col] = 'f'
-            //     }
-            //     console.log(arr)
-            // }
-            //
-            // context.putImageData(blurSpace, posX - 10, posY - 10);
             isDrawing = true;
-            context.beginPath();
-            context.lineWidth = size / 5;
-            context.strokeStyle = color;
-            context.lineJoin = "round";
-            context.lineCap = "round";
+            if (isBrushing) {
+                context.beginPath();
+                context.lineWidth = size / 5;
+                context.strokeStyle = color;
+                context.lineJoin = "round";
+                context.lineCap = "round";
 
 
-            context.moveTo(posX, posY);
+                context.moveTo(posX, posY);
+            }
+
         };
 
         document.onmousemove = (e) => {
@@ -124,18 +127,62 @@ function drawOnImage(image = null) {
                 const posX = e.pageX - canvas.offsetLeft;
                 const posY = e.pageY - canvas.offsetTop;
 
-                context.lineTo(posX, posY);
-                context.stroke();
+
                 if (!isBrushing) {
-                    const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
-                    const data = imageData.data;
+                    applyBlur(posX, posY)
+                } else {
+                    context.lineTo(posX, posY);
+                    context.stroke();
                 }
             }
         };
 
+        const applyBlur = (x, y) => {
+            const radius = size / 3.5; // Радиус размытия
+            const imageData = context.getImageData(
+                x - radius,
+                y - radius,
+                radius * 2,
+                radius * 2
+            );
+
+            // Создаем временный canvas для размытия
+            const tempCanvas = document.createElement("canvas");
+            tempCanvas.width = radius * 2;
+            tempCanvas.height = radius * 2;
+
+            const tempCtx = tempCanvas.getContext("2d");
+
+            // Рисуем на временном canvas
+            tempCtx.putImageData(imageData, 0, 0);
+
+            // Применяем размытие (например, Gaussian Blur)
+            tempCtx.globalAlpha = 0.5; // Уровень прозрачности для эффекта размытия
+            tempCtx.drawImage(
+                tempCanvas,
+                -radius / 4,
+                -radius / 4,
+                radius * 2.5,
+                radius * 2.5
+            );
+
+            // Получаем данные изображения с размытого canvas и накладываем их обратно на основной canvas
+            const blurredData = tempCtx.getImageData(
+                0,
+                0,
+                tempCanvas.width,
+                tempCanvas.height
+            );
+
+            // Накладываем размытие на основной canvas
+            context.putImageData(blurredData, x - radius, y - radius);
+        }
+
         ground.onmouseup = function () {
             isDrawing = false;
             context.closePath();
+            const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+            localStorage.setItem("edit-last", imageData)
         };
     }
 
