@@ -30,6 +30,17 @@ body {
     width: 100%;
 }
 
+.cursor {
+    position: absolute;
+    border-radius: 50%;
+    border: solid 2px #fb06fb;
+    background-color: transparent;
+    width: 20px;
+    aspect-ratio: 1/1;
+    right: 0;
+    top: 0;
+}
+
 .edit-panel {
     background-color: #22222e;
     width: 50%;
